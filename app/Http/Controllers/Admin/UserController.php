@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
-class CacheController extends Controller
+class UserController extends Controller
 {
     public function __construct()
     {
@@ -16,17 +16,17 @@ class CacheController extends Controller
 
     public function getIndex()
     {
-        return view('admin.caches.index');
+        return view('admin.users.index');
     }
 
     public function getCreate()
     {
-        return view('admin.caches.create');
+        return view('admin.users.create');
     }
 
     public function getEdit($id)
     {
-        return view('admin.caches.edit');
+        return view('admin.users.edit');
     }
 
     public function postSave()

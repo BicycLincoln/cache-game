@@ -24,7 +24,10 @@ Route::group(
         Route::group(
             ['prefix' => '/users'],
             function () {
-
+                Route::get('/', ['as' => 'admin.users.index.get', 'uses' => 'Admin\UserController@getIndex']);
+                Route::get('/{id}', ['as' => 'admin.users.edit.get', 'uses' => 'Admin\UserController@getEdit']);
+                Route::get('/create', ['as' => 'admin.users.create.get', 'uses' => 'Admin\UserController@getCreate']);
+                Route::get('/save', ['as' => 'admin.users.save.post', 'uses' => 'Admin\UserController@postSave']);
             }
         );
     }

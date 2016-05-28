@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Auth;
 use Illuminate\Support\ServiceProvider;
+use Request;
 
 class ComposerServiceProvider extends ServiceProvider
 {
@@ -17,6 +18,15 @@ class ComposerServiceProvider extends ServiceProvider
         view()->composer('*', function ($view) {
             if (Auth::check()) {
                 $view->with('auth', Auth::user());
+            }
+
+            $route = Request::route()->getName();
+            if (starts_with($route, 'admin.caches')) {
+                $view->with('section', 'caches');
+            } elseif (starts_with($route, 'admin.users')) {
+                $view->with('section', 'users');
+            } else {
+                $view->with('section', '');
             }
         });
     }
