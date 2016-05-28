@@ -13,8 +13,21 @@ class CreateCachesTable extends Migration
     public function up()
     {
         Schema::create('caches', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('user_id');
+            $table->string('code', 191);
+            $table->string('name', 191);
+            $table->text('description')->nullable();
+            $table->decimal('latitude', 10, 8);
+            $table->decimal('longitude', 11, 8);
+            $table->text('address')->nullable();
             $table->timestamps();
+            $table->softDeletes();
+
+            $table->index(['code']);
+            $table->index(['latitude', 'longitude']);
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

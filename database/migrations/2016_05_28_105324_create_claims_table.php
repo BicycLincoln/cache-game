@@ -13,8 +13,18 @@ class CreateClaimsTable extends Migration
     public function up()
     {
         Schema::create('claims', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('cache_id');
+            $table->string('email', 191)->nullable();
+            $table->string('name', 191)->nullable();
+            $table->text('comment')->nullable();
+            $table->text('feedback')->nullable();
+            $table->text('extra')->nullable();
             $table->timestamps();
+            $table->timestamp('hidden_at')->nullable();
+            $table->softDeletes();
+
+            $table->foreign('cache_id')->references('id')->on('caches')->onDelete('cascade');
         });
     }
 
