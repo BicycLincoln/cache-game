@@ -1,9 +1,10 @@
 {
-  "name": "laravel/laravel",
-  "description": "The Laravel Framework.",
+  "name": "bicyclincoln/cache-game",
+  "description": "BicycLincoln Cache Game.",
   "keywords": [
-    "framework",
-    "laravel"
+    "bicyclincoln",
+    "cache game",
+    "geocache"
   ],
   "license": "MIT",
   "type": "project",
