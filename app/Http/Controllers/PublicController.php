@@ -32,4 +32,9 @@ class PublicController extends Controller
     {
 
     }
+
+    public function anyRobots()
+    {
+        return view('robots');
+    }
 }

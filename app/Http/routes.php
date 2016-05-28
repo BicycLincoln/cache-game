@@ -1,9 +1,10 @@
 <?php
 
 Route::get('/', ['as' => 'get.index', 'uses' => 'PublicController@getIndex']);
+Route::any('/robots.txt', ['as' => 'get.robots', 'uses' => 'PublicController@anyRobots']);
 Route::get('/cache/{id}', ['as' => 'get.cache', 'uses' => 'PublicController@getCache']);
 Route::get('/claim/{code}', ['as' => 'get.claim', 'uses' => 'PublicController@getClaim']);
-Route::get('/claim/{code}', ['as' => 'post.claim', 'uses' => 'PublicController@postClaim']);
+Route::post('/claim/{code}', ['as' => 'post.claim', 'uses' => 'PublicController@postClaim']);
 
 //Route::get('/', 'Hom')
 //Route::get('/', function () {
