@@ -38,5 +38,11 @@ Route::group(
     }
 );
 
-
-Route::auth();
+Route::group(
+    ['prefix' => '/auth'],
+    function () {
+        Route::get('/login', ['as' => 'auth.login.get', 'uses' => 'Auth\AuthController@getLogin']);
+        Route::post('/login', ['as' => 'auth.login.post', 'uses' => 'Auth\AuthController@postLogin']);
+        Route::any('/logout', ['as' => 'auth.logout.any', 'uses' => 'Auth\AuthController@anyLogout']);
+    }
+);
