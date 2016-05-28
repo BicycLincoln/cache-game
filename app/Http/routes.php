@@ -9,7 +9,24 @@ Route::post('/claim/{code}', ['as' => 'claim.post', 'uses' => 'PublicController@
 Route::group(
     ['prefix' => '/admin'],
     function () {
-        Route::get('/', ['as' => 'admin.index.get', 'uses' => 'AdminController@getIndex']);
+        Route::get('/', ['as' => 'admin.index.get', 'uses' => 'Admin\AdminController@getIndex']);
+
+        Route::group(
+            ['prefix' => '/caches'],
+            function () {
+                Route::get('/', ['as' => 'admin.caches.index.get', 'uses' => 'Admin\CacheController@getIndex']);
+                Route::get('/{id}', ['as' => 'admin.caches.edit.get', 'uses' => 'Admin\CacheController@getEdit']);
+                Route::get('/create', ['as' => 'admin.caches.create.get', 'uses' => 'Admin\CacheController@getCreate']);
+                Route::get('/save', ['as' => 'admin.caches.save.post', 'uses' => 'Admin\CacheController@postSave']);
+            }
+        );
+
+        Route::group(
+            ['prefix' => '/users'],
+            function () {
+
+            }
+        );
     }
 );
 

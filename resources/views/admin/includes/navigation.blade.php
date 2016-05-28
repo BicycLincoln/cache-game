@@ -11,8 +11,8 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="{{ route('admin.index.get') }}">Caches</a></li>
-                <li><a href="{{ route('admin.index.get') }}">Users</a></li>
+                <li data-section="caches"><a href="{{ route('admin.index.get') }}">Caches</a></li>
+                <li data-section="users"><a href="{{ route('admin.index.get') }}">Users</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="hidden-xs"><p class="navbar-text">{{ isset($auth) ? $auth->full_name : 'test' }}</p></li>
