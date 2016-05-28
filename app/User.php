@@ -22,6 +22,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property \Carbon\Carbon $online_at
  * @property \Carbon\Carbon $deleted_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Cache[] $caches
+ * @property-read mixed $full_name
  * @method static \Illuminate\Database\Query\Builder|\App\User whereId($value)
  * @method static \Illuminate\Database\Query\Builder|\App\User whereFirstName($value)
  * @method static \Illuminate\Database\Query\Builder|\App\User whereMiddleName($value)
@@ -62,12 +63,24 @@ class User extends Model implements Authenticatable, CanResetPassword
         'password', 'remember_token',
     ];
 
+    protected $appends = [
+        'full_name'
+    ];
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function caches()
     {
         return $this->hasMany(Cache::class);
+    }
+
+    public function getFullNameAttribute()
+    {
+        return
+            $this->first_name . ' ' .
+            (!empty($this->middle_name) ? $this->middle_name . ' ' : '') .
+            $this->last_name;
     }
 
     /**
