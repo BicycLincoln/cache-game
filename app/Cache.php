@@ -19,6 +19,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @property \Carbon\Carbon $deleted_at
+ * @property-read \App\User $user
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Claim[] $claims
  * @method static \Illuminate\Database\Query\Builder|\App\Cache whereId($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Cache whereUserId($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Cache whereCode($value)
@@ -40,4 +42,20 @@ class Cache extends Model
      * @var array
      */
     protected $dates = ['deleted_at'];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function claims()
+    {
+        return $this->hasMany(Claim::class);
+    }
 }

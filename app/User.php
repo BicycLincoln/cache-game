@@ -21,6 +21,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property \Carbon\Carbon $updated_at
  * @property \Carbon\Carbon $online_at
  * @property \Carbon\Carbon $deleted_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Cache[] $caches
  * @method static \Illuminate\Database\Query\Builder|\App\User whereId($value)
  * @method static \Illuminate\Database\Query\Builder|\App\User whereFirstName($value)
  * @method static \Illuminate\Database\Query\Builder|\App\User whereMiddleName($value)
@@ -60,6 +61,14 @@ class User extends Model implements Authenticatable, CanResetPassword
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function caches()
+    {
+        return $this->hasMany(Cache::class);
+    }
 
     /**
      * Get the name of the unique identifier for the user.
