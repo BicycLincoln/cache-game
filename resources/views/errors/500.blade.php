@@ -1,5 +1,5 @@
 @extends('layouts.public')
 
 @section('body')
-    Site down for maintenance.
+    Server error.
 @endsection
