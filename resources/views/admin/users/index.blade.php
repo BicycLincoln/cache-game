@@ -5,5 +5,52 @@
 @endsection
 
 @section('body')
-    Users
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <h1 class="page-header">
+                    Users
+                    <a class="btn btn-primary" href="{{ route('admin.users.create.get') }}">Create User</a>
+                </h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Last Active</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($users as $user)
+                        <tr class="{{ $user->deleted_at ? 'deleted' : '' }}">
+                            <td>
+                                {{ $user->full_name }}
+                            </td>
+                            <td>
+                                <a href="mailto:{{ $user->email }}">
+                                    {{ $user->email }}
+                                </a>
+                            </td>
+                            <td>
+                                {{ $user->online_at ?: 'N/A' }}
+                            </td>
+                            <td>
+                                <a class="btn btn-primary btn-xs pull-right"
+                                   href="{{ route('admin.users.edit.get', ['id' => $user->id]) }}"
+                                >
+                                    Edit
+                                </a>
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 @endsection

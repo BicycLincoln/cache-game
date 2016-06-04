@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\User;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -16,7 +17,16 @@ class UserController extends Controller
 
     public function getIndex()
     {
-        return view('admin.users.index');
+        $users = User::withTrashed()
+            ->orderBy('first_name', 'asc')
+            ->orderBy('last_name', 'asc')
+            ->get();
+
+        $with = [
+            'users' => $users
+        ];
+
+        return view('admin.users.index', $with);
     }
 
     public function getCreate()

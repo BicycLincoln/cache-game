@@ -21,3 +21,23 @@ footer {
   padding: 20px;
   text-align: center;
 }
+
+.page-header {
+  position: relative;
+
+  .btn {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+  }
+}
+
+.table {
+  tr.deleted {
+    td {
+      opacity: 0.5;
+      text-decoration: line-through;
+    }
+  }
+}
