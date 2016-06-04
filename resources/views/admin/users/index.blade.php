@@ -18,12 +18,12 @@
             <div class="col-xs-12">
                 <table class="table table-striped">
                     <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Last Active</th>
-                            <th></th>
-                        </tr>
+                    <tr>
+                        <th>Name</th>
+                        <th class="hidden-xs">Email</th>
+                        <th class="hidden-xs hidden-sm">Last Active</th>
+                        <th></th>
+                    </tr>
                     </thead>
                     <tbody>
                     @foreach($users as $user)
@@ -31,12 +31,12 @@
                             <td>
                                 {{ $user->full_name }}
                             </td>
-                            <td>
+                            <td class="hidden-xs">
                                 <a href="mailto:{{ $user->email }}">
                                     {{ $user->email }}
                                 </a>
                             </td>
-                            <td>
+                            <td class="hidden-xs hidden-sm">
                                 {{ $user->online_at ?: 'N/A' }}
                             </td>
                             <td>

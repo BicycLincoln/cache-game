@@ -15,9 +15,9 @@ Route::group(
             ['prefix' => '/caches'],
             function () {
                 Route::get('/', ['as' => 'admin.caches.index.get', 'uses' => 'Admin\CacheController@getIndex']);
-                Route::get('/{id}', ['as' => 'admin.caches.edit.get', 'uses' => 'Admin\CacheController@getEdit']);
                 Route::get('/create', ['as' => 'admin.caches.create.get', 'uses' => 'Admin\CacheController@getCreate']);
-                Route::get('/save', ['as' => 'admin.caches.save.post', 'uses' => 'Admin\CacheController@postSave']);
+                Route::post('/save', ['as' => 'admin.caches.save.post', 'uses' => 'Admin\CacheController@postSave']);
+                Route::get('/{id}', ['as' => 'admin.caches.edit.get', 'uses' => 'Admin\CacheController@getEdit']);
             }
         );
 
@@ -25,9 +25,9 @@ Route::group(
             ['prefix' => '/users'],
             function () {
                 Route::get('/', ['as' => 'admin.users.index.get', 'uses' => 'Admin\UserController@getIndex']);
-                Route::get('/{id}', ['as' => 'admin.users.edit.get', 'uses' => 'Admin\UserController@getEdit']);
                 Route::get('/create', ['as' => 'admin.users.create.get', 'uses' => 'Admin\UserController@getCreate']);
-                Route::get('/save', ['as' => 'admin.users.save.post', 'uses' => 'Admin\UserController@postSave']);
+                Route::post('/save', ['as' => 'admin.users.save.post', 'uses' => 'Admin\UserController@postSave']);
+                Route::get('/{id}', ['as' => 'admin.users.edit.get', 'uses' => 'Admin\UserController@getEdit']);
             }
         );
     }
