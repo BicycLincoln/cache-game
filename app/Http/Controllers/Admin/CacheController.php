@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Cache;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-
 use App\Http\Requests;
 
 class CacheController extends Controller
@@ -16,7 +15,16 @@ class CacheController extends Controller
 
     public function getIndex()
     {
-        return view('admin.caches.index');
+        $caches = Cache::withTrashed()
+            ->orderByRaw('`deleted_at` IS NOT NULL asc')
+            ->orderBy('name', 'asc')
+            ->get();
+
+        $with = [
+            'caches' => $caches
+        ];
+
+        return view('admin.caches.index', $with);
     }
 
     public function getCreate()
